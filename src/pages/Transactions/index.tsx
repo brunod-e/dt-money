@@ -1,17 +1,20 @@
-import { useContext, useEffect, useState } from 'react'
-import { Header } from '../../components/Header'
-import { Summary } from '../../components/Summary'
-import { TransactionsContext } from '../../contexts/TransactionsContext'
-import { dateFormatter, priceFormatter } from '../../utils/formatter'
-import { SearchForm } from './components/SearchForm'
+import { useContextSelector } from 'use-context-selector';
+import { Header } from '../../components/Header';
+import { Summary } from '../../components/Summary';
+import { TransactionsContext } from '../../contexts/TransactionsContext';
+import { dateFormatter, priceFormatter } from '../../utils/formatter';
+import { SearchForm } from './components/SearchForm';
 import {
   PriceHighlight,
   TransactionsContainer,
   TransactionsTable,
-} from './styles'
+} from './styles';
 
 export const Transactions = () => {
-  const { transactions } = useContext(TransactionsContext)
+  const transactions = useContextSelector(
+    TransactionsContext,
+    (context) => context.transactions
+  );
 
   return (
     <div>
@@ -39,5 +42,5 @@ export const Transactions = () => {
         </TransactionsTable>
       </TransactionsContainer>
     </div>
-  )
-}
+  );
+};
